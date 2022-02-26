@@ -86,7 +86,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     if (usernameController.text == 'admin') {
                       print('ADMIN USER');
                       setState(() {
-                        usernameController.text = 'admin';
                         result = 'User: admin';
                         setUsername(usernameController.text);
                         setStatus('Success');
@@ -94,8 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     } else {
                       print('OTHER USER');
                       setState(() {
-                        usernameController.text = 'other';
-                        result = 'User: Other';
+                        result = 'Login fail';
                         setUsername(usernameController.text);
                         setStatus('fail');
                       });
