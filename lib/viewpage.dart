@@ -28,14 +28,14 @@ class _ViewPageState extends State<ViewPage> {
           child: ListView(
         children: [
           Text(
-            text!,
+            'Username: ${text!}',
             style: TextStyle(fontSize: 25),
           ),
           SizedBox(
             height: 30,
           ),
           Text(
-            status!,
+            'Status: ${status!}',
             style: TextStyle(fontSize: 25),
           )
         ],
