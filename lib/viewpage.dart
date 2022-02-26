@@ -10,12 +10,14 @@ class ViewPage extends StatefulWidget {
 
 class _ViewPageState extends State<ViewPage> {
   String? text = '';
+  String? status = '';
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     getUsername();
+    getStatus();
   }
 
   @override
@@ -28,6 +30,13 @@ class _ViewPageState extends State<ViewPage> {
           Text(
             text!,
             style: TextStyle(fontSize: 25),
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          Text(
+            status!,
+            style: TextStyle(fontSize: 25),
           )
         ],
       )),
@@ -37,9 +46,18 @@ class _ViewPageState extends State<ViewPage> {
   getUsername() async {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
-    final username = sharedPreferences.getString('uesrname');
+    final username = sharedPreferences.getString('username');
     setState(() {
       text = username;
+    });
+  }
+
+  getStatus() async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    final statusPref = sharedPreferences.getString('status');
+    setState(() {
+      status = statusPref!;
     });
   }
 }

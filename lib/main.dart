@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterloginpage/viewpage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -88,6 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         usernameController.text = 'admin';
                         result = 'User: admin';
                         setUsername(usernameController.text);
+                        setStatus('Success');
                       });
                     } else {
                       print('OTHER USER');
@@ -95,6 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         usernameController.text = 'other';
                         result = 'User: Other';
                         setUsername(usernameController.text);
+                        setStatus('fail');
                       });
                     }
                   },
@@ -102,7 +105,12 @@ class _MyHomePageState extends State<MyHomePage> {
               const SizedBox(
                 height: 30,
               ),
-              ElevatedButton(onPressed: () {}, child: Text("Show Username")),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => ViewPage()));
+                  },
+                  child: Text("Show Username")),
               const SizedBox(
                 height: 30,
               ),
@@ -119,9 +127,15 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Future<void> setUsername(textUsername) async {
+  Future<void> setUsername(String textUsername) async {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
-    sharedPreferences.setString('uesrname', textUsername);
+    sharedPreferences.setString('username', textUsername);
+  }
+
+  void setStatus(String s) async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    sharedPreferences.setString('status', s);
   }
 }
